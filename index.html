@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Innovation Expo 2026 Gallery</title>
+  <meta name="description" content="Photo gallery from the POTRAZ Innovation Expo 2026 in Bulawayo. View and download photos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><circle cx='16' cy='17' r='6' fill='none' stroke='white' stroke-width='2.5'/><rect x='11' y='7' width='10' height='4' rx='1.5' fill='white'/></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Expo 2026 <em>Gallery</em></span>
+      </a>
+      <nav class="topnav">
+        <a href="#gallery">Photos</a>
+        <a href="#services" class="btn btn-ghost btn-sm">Need a website?</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="eyebrow">POTRAZ Innovation Expo &middot; Bulawayo</p>
+      <h1>Expo 2026 <span class="glow-text">Photo Gallery</span></h1>
+      <p class="lede">Browse every moment from the expo. Tap a photo to view it full size, or select several and download them in one go.</p>
+      <div class="stats" id="stats"></div>
+    </div>
+  </section>
+
+  <main id="gallery" class="wrap">
+    <div class="toolbar" id="toolbar">
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="toolbar-actions">
+        <button class="btn btn-ghost" id="selectModeBtn" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m8 12 3 3 5-6"/></svg>
+          <span>Select</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="albums"></div>
+  </main>
+
+  <section id="services" class="services">
+    <div class="wrap">
+      <div class="services-card">
+        <div class="services-glow" aria-hidden="true"></div>
+        <div class="services-copy">
+          <p class="eyebrow">Web services</p>
+          <h2>Like this site? Let&rsquo;s build yours.</h2>
+          <p>I design and build fast, clean websites &mdash; galleries, business sites, portfolios, landing pages and web apps. If you want something like this for your event, brand or business, send me a message.</p>
+          <ul class="service-list">
+            <li>Business &amp; portfolio websites</li>
+            <li>Event &amp; photo galleries</li>
+            <li>Landing pages &amp; web apps</li>
+          </ul>
+        </div>
+        <div class="services-cta">
+          <a class="btn btn-primary btn-lg" href="mailto:nqobilemuyambiri@gmail.com?subject=Website%20enquiry">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+            Email me
+          </a>
+          <button class="email-chip" id="copyEmail" type="button" title="Copy email address">
+            <span>nqobilemuyambiri@gmail.com</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>Innovation Expo 2026 &middot; Bulawayo</span>
+      <a href="mailto:nqobilemuyambiri@gmail.com">Website by Nqobile Muyambiri</a>
+    </div>
+  </footer>
+
+  <!-- Floating selection bar -->
+  <div class="selbar" id="selbar" aria-live="polite">
+    <span class="selbar-count"><strong id="selCount">0</strong> selected</span>
+    <button class="btn btn-ghost btn-sm" id="selAll">Select all</button>
+    <button class="btn btn-ghost btn-sm" id="selClear">Clear</button>
+    <button class="btn btn-primary btn-sm" id="selDownload">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+      <span>Download</span>
+    </button>
+  </div>
+
+  <!-- Download progress -->
+  <div class="toast" id="toast" role="status">
+    <div class="toast-text" id="toastText"></div>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Photo viewer">
+    <div class="lb-top">
+      <span class="lb-caption" id="lbCaption"></span>
+      <div class="lb-actions">
+        <button class="lb-btn" id="lbSelect" title="Select (S)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m8 12 3 3 5-6"/></svg>
+        </button>
+        <a class="lb-btn" id="lbDownload" title="Download (D)" download>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>
+        </a>
+        <button class="lb-btn" id="lbClose" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+    </button>
+    <figure class="lb-stage">
+      <img id="lbThumb" alt="" class="lb-img lb-img-low" />
+      <img id="lbImg" alt="" class="lb-img" />
+      <div class="spinner" id="lbSpinner"></div>
+    </figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+    </button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="data/gallery.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

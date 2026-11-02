@@ -1,0 +1,14 @@
+{
+  "name": "potraz-innovation-expo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Photo gallery for the POTRAZ Innovation Expo 2026, Bulawayo",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "npx --yes http-server -p 8080 -c-1 ."
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

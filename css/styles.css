@@ -61,13 +61,8 @@ svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width:
   border-bottom: 1px solid var(--line);
 }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.01em; }
+.brand { display: flex; align-items: center; font-weight: 800; letter-spacing: -.01em; }
 .brand em { font-style: normal; color: var(--blue); }
-.brand-mark {
-  width: 28px; height: 28px; border-radius: 9px;
-  background: linear-gradient(135deg, #60a5fa, var(--blue));
-  box-shadow: 0 0 18px rgba(59, 130, 246, .6);
-}
 .topnav { display: flex; align-items: center; gap: 20px; font-size: 14px; font-weight: 500; color: var(--ink-2); }
 .topnav > a:not(.btn):hover { color: var(--blue); }
 

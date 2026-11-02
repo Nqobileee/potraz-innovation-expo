@@ -23,8 +23,13 @@ async function main() {
     .filter((d) => d.isDirectory())
     .map((d) => d.name)
     .sort((a, b) => {
-      const rank = (n) => (/final/i.test(n) ? 999 : parseInt(n.match(/\d+(?!.*\d)/)?.[0] ?? "0", 10));
-      return rank(a) - rank(b);
+      // Numbered days first, then the final day, then any named sessions.
+      const rank = (n) => {
+        const day = n.match(/\bDAY\s+(\d+)/i);
+        if (day) return parseInt(day[1], 10);
+        return /final/i.test(n) ? 900 : 1000;
+      };
+      return rank(a) - rank(b) || a.localeCompare(b);
     });
 
   const albums = [];

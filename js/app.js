@@ -198,14 +198,19 @@
     const img = $("#lbImg");
     const low = $("#lbThumb");
 
+    const stage = img.parentElement;
     low.src = url(p.thumb);
     img.classList.remove("loaded");
+    stage.classList.remove("ready");
     $("#lbSpinner").classList.remove("hide");
+    img.removeAttribute("src");
     img.onload = () => {
       if (lbIndex !== i) return;
       img.classList.add("loaded");
+      stage.classList.add("ready");
       $("#lbSpinner").classList.add("hide");
     };
+    img.onerror = () => lbIndex === i && $("#lbSpinner").classList.add("hide");
     img.src = url(p.src);
     img.alt = low.alt = `${p.album.title} – ${p.name}`;
 

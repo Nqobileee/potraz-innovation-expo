@@ -226,13 +226,14 @@ h1 { margin: 0; font-size: clamp(36px, 6vw, 64px); line-height: 1.05; letter-spa
 .lb-btn svg, .lb-nav svg { width: 20px; height: 20px; }
 .lb-nav { align-self: center; justify-self: center; width: 52px; height: 52px; }
 .lb-stage { position: relative; margin: 0; padding: 8px 0 24px; display: grid; place-items: center; min-height: 0; min-width: 0; }
+/* Preview and full image share one box so the swap lines up exactly. */
 .lb-img {
-  grid-area: 1 / 1; max-width: 100%; max-height: calc(100vh - 100px); object-fit: contain;
-  border-radius: 10px; box-shadow: 0 30px 80px -30px rgba(37, 99, 235, .45);
+  grid-area: 1 / 1; width: 100%; height: calc(100vh - 100px); object-fit: contain;
+  filter: drop-shadow(0 24px 40px rgba(37, 99, 235, .22));
 }
-.lb-img-low { filter: blur(6px); }
-#lbImg { opacity: 0; transition: opacity .3s; }
+#lbImg { position: relative; z-index: 1; opacity: 0; transition: opacity .25s; }
 #lbImg.loaded { opacity: 1; }
+.lb-stage.ready .lb-img-low { visibility: hidden; }
 .spinner {
   grid-area: 1 / 1; width: 34px; height: 34px; border-radius: 50%;
   border: 3px solid var(--blue-soft); border-top-color: var(--blue);
@@ -301,7 +302,7 @@ h1 { margin: 0; font-size: clamp(36px, 6vw, 64px); line-height: 1.05; letter-spa
   .lb-prev { left: calc(50% - 64px); }
   .lb-next { left: calc(50% + 12px); }
   .lb-stage { padding-bottom: 88px; }
-  .lb-img { max-height: calc(100vh - 170px); }
+  .lb-img { height: calc(100vh - 170px); }
   .lb-top { padding: 0 12px 0 16px; }
 }
 @media (hover: none) {
